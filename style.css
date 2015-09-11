@@ -1,0 +1,24 @@
+h2 {
+	text-align: center;
+	margin: 0px auto;
+	font-size: 5em;
+}
+#game {
+	margin: 0px auto;
+	max-width: 750px;
+}
+.box {
+	float: left;
+	width: 220px;
+	height: 220px;
+	background-color: black;
+	margin: 10px 10px;
+}
+.text {
+	font-size: 15em;
+	color:white;
+	text-align: center;
+	font-family: arial;
+	margin-top: -25px;
+}
+
