@@ -1,4 +1,7 @@
 'use strict';
+var xPlay = function() {
+
+}
 
 $(document).ready(function() {
 	var count = 0;
@@ -22,6 +25,7 @@ $(document).ready(function() {
 			} 
 		count++;
 		var lastX = xFilled[xFilled.length-1];
+		var lastO = oFilled[oFilled.length-1];
 		if ( xFilled[2] === xFilled[0] + 2 || 
 			(lastX === xFilled[0] + 6 
 				&& xFilled.indexOf(lastX-3) !== -1) ||
@@ -30,8 +34,7 @@ $(document).ready(function() {
 			$title.text('X is the winner!');
 			return;
 		}
-		var lastO = oFilled[oFilled.length-1];
-		if ( oFilled[2] === oFilled[0] + 2 || 
+		else if ( oFilled[2] === oFilled[0] + 2 || 
 			(lastO === oFilled[0] + 6 
 				&& oFilled.indexOf(lastO-3) !== -1) ||
 			(lastO === oFilled[0] + 8)
