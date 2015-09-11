@@ -4,9 +4,8 @@ $(document).ready(function() {
 	var xFilled = [];
 	var oFilled = [];
 	var $title = $('#title');
-	console.log($title.text())
-	if ($title.text() === 'Tic Tac Toe!') {
-		$('.box').on('click', function() {
+	var $box = $('.box');
+		$box.on('click', function() {
 			var $this = $(this);
 			if( $this.text() !== 'X' && $this.text() !== 'O' ) {
 				console.log($this.text());
@@ -15,14 +14,14 @@ $(document).ready(function() {
 					xFilled.push(parseInt($this.attr('id')));
 					xFilled = xFilled.sort();
 					console.log(xFilled);
+					count++;
 				} else {
 					$this.empty().append("<div class='text'>O</div>");
 					oFilled.push(parseInt($this.attr('id')));
 					oFilled= oFilled.sort();
 					console.log(oFilled);
+					count++;
 				} 
-			}
-		count++;
 		var lastX = xFilled[xFilled.length-1];
 		var lastO = oFilled[oFilled.length-1];
 		if ( 
@@ -32,6 +31,7 @@ $(document).ready(function() {
 			(lastX === 7 && lastX === xFilled[1] + 4 && xFilled.indexOf(lastX -2) !== -1) 
 			) {
 			$title.text('X is the winner!');
+			$box.off();
 			return;
 		}
 		else if ( 
@@ -41,8 +41,10 @@ $(document).ready(function() {
 			(lastO === 7 && lastO === oFilled[1] + 4 && oFilled.indexOf(lastO-2) !== -1) 
 			) {
 			$title.text('O is the winner!');
+			$box.off();
 			return;
+			}
+			$('div:empty').css('background-color', 'blue')
 		}
-		})
-	}
+	})
 })
