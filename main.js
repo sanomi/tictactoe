@@ -9,16 +9,14 @@ $(document).ready(function() {
 		var $this = $(this);
 		if (count%2 === 0) {
 			$this.addClass('X');
-			xFilled.push(parseInt($this.attr('id')));
-			xFilled = xFilled.sort();
+			xFilled.push($this.attr('class'));
 			testWin(xFilled);
 			console.log("xarray:" + xFilled);
 			winner = "Skull"
 			count++;
 		} else {
 			$this.addClass('O');
-			oFilled.push(parseInt($this.attr('id')));
-			oFilled= oFilled.sort();
+			oFilled.push($this.attr('class'));
 			testWin(oFilled);
 				console.log("oarray:" + oFilled);
 			winner = "Bones"
@@ -27,16 +25,9 @@ $(document).ready(function() {
 		$this.off()
 	})
 	function testWin(filled){
+		filled = filled.join(' ')
 		console.log(filled);
-		var last = filled[filled.length-1]
-		var first = filled[0];
-		if (
-			( (first === 1 || first === 4 || first === 7) && filled[2] === first + 2 ) ||
-			(last === first + 6 && filled.indexOf(last-3) !== -1) ||
-			(last === 9 && last === first + 8 && filled.indexOf(last-4) !== -1) ||
-			(last === 7 && last === filled[1] + 4 && filled.indexOf(last -2) !== -1) ||
-			filled.toString() === '2,5,7,8,9'
-			){
+		if( /(AcT|AcM|AcB|DoL|DoM|DoR|DiF|DiB)/g.match(filled) ===3 ) {
 			$title.text(winner + ' for the win!');
 			$(".box").off()
 		} else if ( oFilled.length + xFilled.length === 9 ){
