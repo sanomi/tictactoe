@@ -4,24 +4,24 @@ $(document).ready(function() {
 	var xFilled = [];
 	var oFilled = [];
 	var $title = $('#title');
-	var winner = "austin";
+	var winner = "";
 	$('.box').on('click', function() {
 		var $this = $(this);
 		if (count%2 === 0) {
-			$this.append("<div class='text'>X</div>");
+			$this.addClass('X');
 			xFilled.push(parseInt($this.attr('id')));
 			xFilled = xFilled.sort();
 			testWin(xFilled);
 			console.log("xarray:" + xFilled);
-			winner = "O"
+			winner = "Skull"
 			count++;
 		} else {
-			$this.append("<div class='text'>O</div>");
+			$this.addClass('O');
 			oFilled.push(parseInt($this.attr('id')));
 			oFilled= oFilled.sort();
 			testWin(oFilled);
 				console.log("oarray:" + oFilled);
-			winner = "X"
+			winner = "Bones"
 			count++;
 		}
 		$this.off()
@@ -29,15 +29,18 @@ $(document).ready(function() {
 	function testWin(filled){
 		console.log(filled);
 		var last = filled[filled.length-1]
+		var first = filled[0];
 		if (
-			( (filled[0] === 1 || filled[0] === 4 || filled[0] === 7) && filled[2] === filled[0] + 2 ) ||
-			(last === filled[0] + 6 && filled.indexOf(last-3) !== -1) ||
-			(last === 9 && last === filled[0] + 8 && filled.indexOf(last-4) !== -1) ||
-			(last === 7 && last === filled[1] + 4 && filled.indexOf(last -2) !== -1)
-		) {
-			$title.text(winner + ' is the winner!');
+			( (first === 1 || first === 4 || first === 7) && filled[2] === first + 2 ) ||
+			(last === first + 6 && filled.indexOf(last-3) !== -1) ||
+			(last === 9 && last === first + 8 && filled.indexOf(last-4) !== -1) ||
+			(last === 7 && last === filled[1] + 4 && filled.indexOf(last -2) !== -1) ||
+			filled.toString() === '2,5,7,8,9'
+			){
+			$title.text(winner + ' for the win!');
 			$(".box").off()
-			return;
-		}
+		} else if ( oFilled.length + xFilled.length === 9 ){
+			$title.text('Ya both loose.');
+			}
 	}
 })
