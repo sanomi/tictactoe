@@ -14,7 +14,7 @@ h2 {
 }
 #game {
 	margin: 0px auto;
-	max-width: 660px;
+	width: 660px;
 }
 .box {
 	float: left;
@@ -31,4 +31,12 @@ h2 {
 	background-image: url('skull.png');
 	background-size: cover;
 }
-
+@media (max-width: 690px) {
+	#game {
+		width: 330px;
+	}
+	.box {
+		width: 90px;
+		height: 90px;
+	}
+}
